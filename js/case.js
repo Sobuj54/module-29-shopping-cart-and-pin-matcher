@@ -16,12 +16,18 @@ function updateCaseNumber (istrue){
             currentCaseNumber = previousCaseNumber - 1 ;
     }
     caseNumberField.value = currentCaseNumber;
+    return currentCaseNumber;
 }
 
 document.getElementById('btn-case-plus').addEventListener('click',function(){
-  updateCaseNumber(true);
+  const currentCaseNumber= updateCaseNumber(true);
+
+  const totalPrice = currentCaseNumber * 59;
+  const casePrice = document.getElementById('case-price');
+  casePrice.innerText = totalPrice ;
 })
 // using addEventListener in minus button
 document.getElementById('btn-case-minus').addEventListener('click', function(){
-    updateCaseNumber(false);
+    const currentCaseNumber = updateCaseNumber(false);
+
 })
