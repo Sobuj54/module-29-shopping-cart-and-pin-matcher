@@ -1,4 +1,3 @@
-// using addEventListener in plus button
 
 function updateCaseNumber (istrue){
     const caseNumberField = document.getElementById('case-number-field');
