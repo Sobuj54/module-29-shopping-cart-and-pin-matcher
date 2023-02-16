@@ -1,33 +1,35 @@
-// for plus button
-document.getElementById('btn-phone-plus').addEventListener('click', function(){
+// phone number update function
+function updatePhoneNumber (isTrue){
     const phoneNumberField = document.getElementById('phone-number-field');
     const phoneNumberFieldString = phoneNumberField.value ;
     const previousPhoneNumber = parseInt(phoneNumberFieldString);
 
-    const currentPhoneNumber = previousPhoneNumber + 1 ;
+    let currentPhoneNumber;
+    if(isTrue === true){
+         currentPhoneNumber = previousPhoneNumber + 1 ;
+    }
+    else{
+         currentPhoneNumber = previousPhoneNumber - 1 ;
+    }
     phoneNumberField.value = currentPhoneNumber;
-
-    const phonePrice = document.getElementById('phone-price');
-    const phonePriceString = phonePrice.innerText;
-    const previousPhonePrice = parseInt(phonePriceString);
-
+    return currentPhoneNumber;
+}
+// price update function
+function updatePhoneTotalPrice (currentPhoneNumber){
     const currentPhonePrice = currentPhoneNumber * 1219;
+    const phonePrice = document.getElementById('phone-price');
     phonePrice.innerText = currentPhonePrice;
+}
 
+// for plus button
+document.getElementById('btn-phone-plus').addEventListener('click', function(){
+    const currentPhoneNumber = updatePhoneNumber(true);
+
+    updatePhoneTotalPrice(currentPhoneNumber);
 })
 // for minus button
 document.getElementById('btn-phone-minus').addEventListener('click', function(){
-    const phoneNumberField = document.getElementById('phone-number-field');
-    const phoneNumberFieldString = phoneNumberField.value ;
-    const previousPhoneNumber = parseInt(phoneNumberFieldString);
+    const currentPhonePrice = updatePhoneNumber(false);
 
-    const currentPhoneNumber = previousPhoneNumber - 1 ;
-    phoneNumberField.value = currentPhoneNumber;
-
-    const phonePrice = document.getElementById('phone-price');
-    const phonePriceString = phonePrice.innerText;
-    const previousPhonePrice = parseInt(phonePriceString);
-    
-    const currentPhonePrice = currentPhoneNumber * 1219;
-    phonePrice.innerText = currentPhonePrice;
+    updatePhoneTotalPrice(currentPhonePrice);
 })
