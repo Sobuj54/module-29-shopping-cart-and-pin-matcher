@@ -1,19 +1,4 @@
-// phone number update function
-function updatePhoneNumber (isTrue){
-    const phoneNumberField = document.getElementById('phone-number-field');
-    const phoneNumberFieldString = phoneNumberField.value ;
-    const previousPhoneNumber = parseInt(phoneNumberFieldString);
-
-    let currentPhoneNumber;
-    if(isTrue === true){
-         currentPhoneNumber = previousPhoneNumber + 1 ;
-    }
-    else{
-         currentPhoneNumber = previousPhoneNumber - 1 ;
-    }
-    phoneNumberField.value = currentPhoneNumber;
-    return currentPhoneNumber;
-}
+// ---------------
 // price update function
 function updatePhoneTotalPrice (currentPhoneNumber){
     const currentPhonePrice = currentPhoneNumber * 1219;
@@ -21,15 +6,29 @@ function updatePhoneTotalPrice (currentPhoneNumber){
     phonePrice.innerText = currentPhonePrice;
 }
 
+// --------------
+function getElementValueById (elementId){
+    const phonePrice = document.getElementById(elementId);
+    const phonePriceString = phonePrice.innerText;
+    const phonePriceInt = parseInt(phonePriceString);
+    return phonePriceInt;
+}
+// -------------
 // for plus button
 document.getElementById('btn-phone-plus').addEventListener('click', function(){
-    const currentPhoneNumber = updatePhoneNumber(true);
+    const currentPhoneNumber = updatePhoneNumber(true, 'phone-number-field');
 
     updatePhoneTotalPrice(currentPhoneNumber);
+    // adding subtotal
+   calculateSubTotal();
 })
+
+// ---------------
 // for minus button
 document.getElementById('btn-phone-minus').addEventListener('click', function(){
-    const currentPhonePrice = updatePhoneNumber(false);
+    const currentPhonePrice = updatePhoneNumber(false, 'phone-number-field');
 
     updatePhoneTotalPrice(currentPhonePrice);
+    // adding sub total
+    calculateSubTotal();
 })
